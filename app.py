@@ -168,7 +168,6 @@ def edit_post(post_id):
 	tag_ids = [int(num) for num in request.form.getlist('tags') if num]
 	post.tags = Tag.query.filter(Tag.id.in_(tag_ids)).all()
 	
-
 	db.session.commit()
 	return redirect(f"/users/{post.user_id}")  
 
@@ -230,7 +229,6 @@ def edit_tag(tag_id):
 	post_ids = [int(num) for num in request.form.getlist('posts')]
 	tag.posts = Post.query.filter(Post.id.in_(post_ids)).all()
 
-	# db.session.add(tag)
 	db.session.commit()
 	return redirect('/tags')
 
@@ -242,21 +240,7 @@ def delete_tag(tag_id):
 	db.session.commit()
 	return redirect('/tags')
 
-
 # Run the app
 if __name__ == '__main__':
 	app.run()
 
-# **GET */tags :*** Lists all tags, with links to the tag detail page.
-
-# **GET */tags/[tag-id] :*** Show detail about a tag. Have links to edit form and to delete.
-
-# **GET */tags/new :*** Shows a form to add a new tag.
-
-# **POST */tags/new :*** Process add form, adds tag, and redirect to tag list.
-
-# **GET */tags/[tag-id]/edit :*** Show edit form for a tag.
-
-# **POST */tags/[tag-id]/edit :*** Process edit form, edit tag, and redirects to the tags list.
-
-# **POST */tags/[tag-id]/delete :*** Delete a tag.
