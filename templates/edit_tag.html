@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% block title %}Add User{% endblock %} 
+{% block content %}
+<!-- Your HTML content goes here -->
+<body>
+  <h1>Edit Your Tag</h1>
+  <form method="post">
+    <label type="text" name="name" >
+    <input type="text" id="name" name="name" value="{{tag.name}}">
+    <button class="btn btn-success" type="submit">Save</button>
+  </form>
+
+
+  <div class="form-group row form-check">
+    {% for post in posts %}
+    <div>
+      <input
+              class="form-input"
+              type="checkbox"
+              value="{{ post.id }}"
+              id="post_{{ post.id }}"
+              name="posts"
+              {% if post in tag.posts %}
+              checked
+              {% endif %}
+      >
+      <label class="form-check-label" for="post_{{ post.id }}">
+        {{ post.title }}
+      </label>
+    </div>
+    {% endfor %}
+  </div>
+
+  
+</body>
+{% endblock %}

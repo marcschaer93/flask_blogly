@@ -1,0 +1,15 @@
+{%extends 'base.html'%} {%block title%}Tags{%endblock%} {%block content%}
+<h2>Tag: {{tag.name}}</h2>
+<button class="btn btn-outline-primary" onclick="window.location.href='/tags'">
+  Back
+</button>
+<button
+  class="btn btn-success"
+  onclick="window.location.href='/tags/{{tag.id}}/edit'"
+>
+  Edit
+</button>
+<form action="/tags/{{tag.id}}/delete" method="post">
+  <button class="btn btn-danger">Delete</button>
+</form>
+{%endblock%}

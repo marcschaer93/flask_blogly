@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% block title %}User{% endblock %} {% block content
+%}
+<!-- Your HTML content goes here -->
+<body>
+  <h1>{{post.title}}</h1>
+  <p>{{post.content}}</p>
+
+  <h2>Tags</h2>
+  {% if post.tags %}
+
+  <ul class="list-group">
+    {%for tag in post.tags%}
+    <li class="list-group-item">
+      <a href="/tags/{{tag.id}}"> {{tag.name}}</a>
+    </li>
+    {%endfor%}
+  </ul>
+
+  {%else%}
+  <p>No tags</p>
+  {% endif %}
+
+  <button
+    class="btn btn-outline-primary"
+    onclick="window.location.href='/users/{{post.user_id}}'"
+  >
+    Cancel
+  </button>
+  <button
+    class="btn btn-success"
+    onclick="window.location.href='/posts/{{post.id}}/edit'"
+  >
+    Edit
+  </button>
+  <form action="/posts/{{post.id}}/delete" method="post">
+    <button class="btn btn-danger" type="submit">Delete</button>
+  </form>
+</body>
+{% endblock %}

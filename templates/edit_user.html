@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% block title %}Add User{% endblock %} {% block
+content %}
+<!-- Your HTML content goes here -->
+<body>
+  <h1>Edit User</h1>
+  <form action="/users/{{user.id}}/edit" method="post">
+    <label for="first_name">First Name:</label>
+    <input
+      type="text"
+      name="first_name"
+      id="first_name"
+      value="{{user.first_name}}"
+      autocomplete="off"
+    />
+    <label for="last_name">Last Name:</label>
+    <input
+      type="text"
+      name="last_name"
+      id="last_name"
+      value="{{user.last_name}}"
+      autocomplete="off"
+    />
+    <label for="image_url">Profile Picture:</label>
+    <input
+      type="text"
+      name="image_url"
+      id="image_url"
+      value="{{user.image_url}}"
+      autocomplete="off"
+    />
+    <button
+      class="btn btn-outline-primary"
+      onclick="window.location.href='/users/{{user.id}}'"
+    >
+      Cancel
+    </button>
+    <button class="btn btn-success" type="submit">Save</button>
+  </form>
+</body>
+{% endblock %}

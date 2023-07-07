@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% block title %}User{% endblock %} {% block content
+%}
+<!-- Your HTML content goes here -->
+<body>
+  <!-- User Profile -->
+  <img
+    src="{{user.image_url}}"
+    alt="{{user.first_name.title()}} {{user.last_name.title()}}"
+  />
+  <h1>{{user.last_name.title()}} {{user.first_name.title()}}</h1>
+  <button
+    class="btn btn-primary"
+    onclick="window.location.href='/users/{{user.id}}/edit'"
+  >
+    Edit
+  </button>
+  <form action="/users/{{user.id}}/delete" method="post">
+    <button class="btn btn-danger" type="submit">Delete</button>
+  </form>
+  <!-- User Posts -->
+  <h1>Posts</h1>
+  <ul class="list-group">
+    {% for post in posts %}
+    <li class="list-group-item">
+      <a href="/posts/{{post.id}}">{{post.title}}</a>
+    </li>
+    {% endfor %}
+  </ul>
+  <button
+    class="btn btn-success"
+    onclick="window.location.href='/users/{{user.id}}/posts/new'"
+  >
+    New Post
+  </button>
+
+  <h1>Tags</h1>
+  <ul class="list-group">
+    {% for tag in tags %}
+    <li class="list-group-item">
+      <a href="/tags/{{tag.id}}">{{tag.name}}</a>
+    </li>
+    {% endfor %}
+  </ul>
+  <button class="btn btn-success" onclick="window.location.href='/tags/new'">
+    Create Tag
+  </button>
+</body>
+{% endblock %}

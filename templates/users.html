@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block title %}Users{% endblock %} {% block content
+%}
+<!-- Your HTML content goes here -->
+<body>
+  <h1>Friends</h1>
+  <ul class="list-group">
+    {% for user in users %}
+    <li class="list-group-item">
+      <a href="/users/{{user.id}}"
+        >{{user.last_name.title()}} {{user.first_name.title()}}</a
+      >
+    </li>
+    {% endfor %}
+  </ul>
+  <button class="btn btn-success" onclick="window.location.href='/users/new'">
+    Add Friend
+  </button>
+  <h1>Tags</h1>
+  <ul class="list-group">
+    {% for tag in tags %}
+    <li class="list-group-item">
+      <a href="/tags/{{tag.id}}">{{tag.name}}</a>
+    </li>
+    {% endfor %}
+  </ul>
+  <button class="btn btn-success" onclick="window.location.href='/tags/new'">
+    Create Tag
+  </button>
+</body>
+{% endblock %}

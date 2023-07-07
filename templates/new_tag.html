@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block title %}Add User{% endblock %} 
+{% block content %}
+<!-- Your HTML content goes here -->
+<body>
+  <h1>Create NEW Tag</h1>
+  <form method="post">
+    <label type="text" name="name" >
+    <input type="text" id="name" name="name" placeholder="TagName">
+    <button class="btn btn-success" type="submit">Create</button>
+  </form>
+
+  
+  <div class="form-check form-group row">
+    {% for post in posts %}
+    <div>
+      <input class="form-input"
+             type="checkbox"
+             value="{{ post.id }}"
+             id="post_{{ post.id }}"
+             name="posts">
+      <label class="form-check-label" for="post_{{ post.id }}">
+        {{ post.title }}
+      </label>
+    </div>
+    {% endfor %}
+  </div>
+
+  
+</body>
+{% endblock %}

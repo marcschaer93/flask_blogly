@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% block title %}Add User{% endblock %} {% block
+content %}
+<!-- Your HTML content goes here -->
+<body>
+  <h1>Edit Post</h1>
+  <form method="post">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input
+        type="title"
+        class="form-control"
+        id="title"
+        name="title"
+        value="{{post.title}}"
+        autocomplete="off"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="content" class="form-label">Blog Content</label>
+      <textarea
+        class="form-control"
+        id="content"
+        name="content"
+        rows="8"
+        value="{{post.content}}"
+        autocomplete="off"
+      ></textarea>
+    </div>
+
+    <h1>Tags</h1>
+    {%for tag in tags%}
+    <div class="form-check">
+      <label class="form-check-label" for="{{tag}}">{{tag.name}}</label>
+      <input
+        name="tags"
+        class="form-check-input"
+        type="checkbox"
+        value="{{tag.id}}"
+        id="{{tag}}"
+      />
+      {% if tag in post.tags %} checked {% endif %}
+    </div>
+    {%endfor%}
+
+    <button
+      class="btn btn-outline-primary"
+      onclick="window.location.href='/users/{{post.user_id}}'"
+    >
+      Cancel
+    </button>
+    <button class="btn btn-success" type="submit">Save</button>
+  </form>
+</body>
+{% endblock %}
