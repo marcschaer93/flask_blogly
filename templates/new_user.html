@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% block title %}Add User{% endblock %} 
+
+{% block content %}
+<!-- Your HTML content goes here -->
+  <div class="container justify-content" style="width: 60%" >
+    <h1 class="display-2 text-center">New Friend</h1>
+    <form
+      id="friend_form"
+      action="/users/new"
+      method="post"
+      class="row g-3 needs-validation"
+      novalidate>
+      <div class="col-md-4 w-75">
+        <label for="first_name" class="form-label">First name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="first_name"
+          name="first_name"
+          placeholder="Antewy"
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="col-md-4">
+        <label for="last_name" class="form-label">Last name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="last_name"
+          name="last_name"
+          placeholder="Roberto"
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+
+      <div class="col-md-6">
+        <label for="image_url" class="form-label">Profile Picture</label>
+        <input type="text" class="form-control" id="image_url" name="image_url" />
+        <div class="invalid-feedback">Your Profile Picture URL</div>
+      </div>
+
+      <div class="col-12">
+        <button class="btn btn-primary" type="submit">Submit form</button>
+      </div>
+    </form>
+  </div>
+  
+{% endblock %}

@@ -1,19 +1,24 @@
-{%extends 'base.html'%} {%block title%}Home{%endblock%} {%block content%}
+{%extends 'base.html'%} {%block title%}Home{%endblock%} 
 
+{%block content%}
+
+<div class="container justify-content" style="width: 60%">
 <h1>Los Amigos</h1>
 <p>
   Los Amigos is a social network for people who want to meet new people. You can
   share posts, see other people's posts, and make new FRIENDS.
 </p>
 
-<h1>Latest Posts</h1>
-<ul class="list-group">
-  {% for post in posts %}
-  <li class="list-group-item">
-    <a href="/posts/{{post.id}}">{{post.title}}</a>
-  </li>
-  {% endfor %}
-</ul>
+<div style="width: 30%" >
+  <h1>Latest Posts</h1>
+  <ul class="list-group">
+    {% for post in posts %}
+    <li class="list-group-item">
+      <a href="/posts/{{post.id}}">{{post.title}}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
 
 <h1>Tags</h1>
 <ul class="list-group">
@@ -37,5 +42,6 @@
   </li>
   {% endfor %}
 </ul>
+</div>
 
 {%endblock%}

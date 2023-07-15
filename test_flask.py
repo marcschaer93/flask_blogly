@@ -70,6 +70,30 @@ class UserViewsTestCase(TestCase):
             self.assertEqual(resp.status_code, 200)
             self.assertIn('<a href="/users/2"\n        >B A</a\n      >', html)
 
+    def test_add_post(self):
+        """Test adding a new post."""
+        with app.test_client() as client:
+            data = {
+                'title': 'a',
+                'content': 'b',
+                'user_id': 1
+            }
+            resp = client.post("/users/1/posts/new", data=data, follow_redirects=True)
+            html = resp.get_data(as_text=True)
+
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn('<li class="list-group-item">\n      <a href="/posts/1">a</a>\n    </li>', html)
+
+    def test_show_post(self):
+        """Test showing a post."""
+        with app.test_client() as client:
+            resp = client.get(f"/posts/1")
+            html = resp.get_data(as_text=True)
+
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn('<h1>a</h1>', html)
+        
+
 # Run the app
 if __name__ == '__main__':
 	app.run()

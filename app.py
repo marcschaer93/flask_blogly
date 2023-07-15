@@ -69,7 +69,7 @@ def list_users():
 @app.route('/users/new')
 def show_user_form():
 	'''Show add user form'''
-	return render_template('add_user.html')
+	return render_template('new_user.html')
 
 @app.route('/users/new', methods=['POST'])
 def add_user():
@@ -149,7 +149,6 @@ def add_post(user_id):
 def show_post(post_id):
 	'''Show a post'''
 	post = Post.query.get_or_404(post_id)
-	print("#######################################", post.tags)
 	return render_template('post.html', post=post)
 
 @app.route('/posts/<int:post_id>/edit')
@@ -239,6 +238,29 @@ def delete_tag(tag_id):
 	db.session.delete(delete_tag)
 	db.session.commit()
 	return redirect('/tags')
+
+
+##################################
+##################################
+##################################
+
+@app.route('/phones')
+def list_phones():
+	"""List all phones"""
+	emps = Employee.query.all()
+	return render_template('phones.html')
+
+@app.route('/snacks/new/', methods=["GET", "POST"])
+def add_snack():
+	form = AddSnackForm()
+	if form.validate_on_submit():
+		name = form.name.data
+		price = form.price.data
+		flash(f"Created new snack: {name} costs ${price}")
+		return redirect('/phones')
+	else:
+		return render_template('add_snack_form.html', form=form)
+
 
 # Run the app
 if __name__ == '__main__':

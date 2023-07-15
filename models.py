@@ -29,7 +29,7 @@ class User(db.Model):
     last_name = db.Column(db.String(50), nullable=False)
     image_url = db.Column(db.String(500), nullable=False, default=DEFAULT_IMAGE_URL)
 
-    posts = db.relationship("Post", backref="user", cascade="all, delete-orphan")
+    posts = db.relationship("Post", backref="user", cascade="all, delete-orphan, delete")
 
 
 class Post(db.Model):
@@ -58,5 +58,5 @@ class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text, nullable=False, unique=True)
 
-    posts = db.relationship('Post', secondary='posts_tags', backref='tags')
+    posts = db.relationship('Post', secondary='posts_tags', cascade="all, delete",  backref='tags')
     
